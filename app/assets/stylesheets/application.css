@@ -29,6 +29,7 @@ div.contact{
 #cont{
     margin: 2px 0 0 0;
     padding: 0;
+    font-size: 80%;
 }
 #cont li.first.top-level-items{border-width: 0;}
 #cont li{
@@ -55,6 +56,7 @@ div.contact{
     padding-right: 0px;
     padding-left: 0px;
     text-align: justify;
+    min-height: 400px;
 }
 div.basement{
     height: 70px;
@@ -188,4 +190,34 @@ ul#menu{
     color: #C9F1FF;
     height: 35px;
     line-height: 35px;
+}
+
+#error_explanation {
+  width: 400px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#error_explanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#error_explanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 5px;
+}
+
+#error_explanation ul li {
+  font-size: 12px;
+  list-style: square;
 }
