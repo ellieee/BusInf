@@ -78,6 +78,16 @@ end
         post :create, :user => @attr
         response.should redirect_to(user_path(assigns(:user)))
       end
+
+      it "should sign the user in" do
+        post :create, :user => @attr
+        controller.should be_signed_in
+      end
+
+      it "should have a welcome messange" do
+        post :create, :user => @atter
+        flash[:success].should =~ /welcome to the BI/i
+      end
     end
   end
 
