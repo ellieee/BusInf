@@ -1,9 +1,13 @@
 # encoding: utf-8
 BusInf::Application.routes.draw do
+  get "sessions/new"
+
   get "users/new"
 
   match '/signup',  :to => 'users#new'
   match '/contact', :to => 'pages#contact'
+  match '/signin', :to => 'sessions#new'
+  match '/signout', :to => 'sessions#destroy'
 
   root :to => 'pages#home'
 
@@ -22,6 +26,8 @@ BusInf::Application.routes.draw do
   resources :students
 
   resources :teachers
+
+  resources :sessions, :only => [:new, :create, :destroy]
 
 
   # The priority is based upon order of creation:

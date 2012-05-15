@@ -28,8 +28,82 @@
     </li>
   </ul>
 </div>
-<%= yield %>
-<%= debug(params) if Rails.env.development? %>
+<section>
+  <% flash.each do |key, value| %>
+      <div class="flash <%= key %>"><%= value %></div>
+  <% end %>
+  <div id="menu">
+    <% if controller.controller_name == 'pages' %>
+        <ul class="current">
+        <li><b><%= link_to "О кафедре", root_path %></b>
+          <ul class="sub_active">
+    <% else %>
+        <ul class="select">
+        <li><b><%= link_to "О кафедре", root_path %></b>
+          <ul class="sub">
+    <% end %>
+    <% if controller.action_name == 'home' %>
+        <li class="current_sub"><b><%= link_to "История кафедры", root_path %></b></li>
+    <% else %>
+        <li><%= link_to "История кафедры", root_path %></li>
+    <% end %>
+    <li><a href="">Преподавательский состав</a></li>
+    <li><a href="">Направления подготовки</a></li> <!-- <<<== активная страница -->
+    </ul>
+    </li>
+    </ul>
+
+        <ul class="select">
+		<li><a href=""><b>Образовательная деятельность</b></a>
+			<ul class="sub">
+				<li><a href="">Направления подготовки</a></li>
+				<li><a href="">Прикладная информатика</a></li>
+				<li><a href="">Бизнес-информатика</a></li>
+			</ul>
+		</li>
+	</ul>
+
+	<ul class="select">
+		<li><a href=""><b>Научная деятельность</b></a>
+			<ul class="sub">
+				<li><a href="">Методические материалы</a></li>
+				<li><a href="">Публикации</a></li>
+			</ul>
+		</li>
+	</ul>
+
+    <% if controller.controller_name == 'sessions' || controller.controller_name == 'users' %>
+        <ul class="current">
+          <li><b><%= link_to "Личный кабинет", signin_path %></b>
+            <ul class="sub_active">
+    <% else %>
+        <ul class="select">
+          <li><b><%= link_to "Личный кабинет", signin_path %></b>
+            <ul class="sub">
+    <% end %>
+    <% if signed_in? %>
+        <li><%= link_to "Расписание" %></li>
+        <li><%= link_to "Личные данные" %></li>
+        <li><%= link_to "Выход", signout_path, :method => :delete %></li>
+    <% else %>
+        <% if controller.controller_name == 'sessions' && controller.action_name == 'new' %>
+            <li class="current_sub"><%= link_to "Вход", signin_path %></li>
+        <% else %>
+            <li><%= link_to "Вход", signin_path %></li>
+        <% end %>
+        <% if controller.controller_name == 'users' && controller.action_name == 'new' %>
+                <li class="current_sub"><%= link_to "Pегистрация пользователя", signup_path %></li>
+        <% else %>
+            <li><%= link_to "Pегистрация пользователя", signup_path %></li>
+        <% end %>
+    <% end %>
+    </ul>
+    </li>
+	</ul>
+  </div>
+  <%= yield %>
+  <%= debug(params) if Rails.env.development? %>
+</section>
 <div class="basement">
   <a href="index.html"><%= image_tag('up.png', :alt => "Вверх", :id => "up", :title => "Наверх" ) %></a>
   © ВятГУ, Кафедра бизнес-информатики, 2012
